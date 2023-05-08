@@ -55,3 +55,4 @@ Route::middleware(['auth:sanctum'])->get('/user/revoke', function (Request $requ
 
 //PHOTOS
 Route::get('/photos', [PhotosController::class, 'show_photos'] )->name('show_photos_event');    
+Route::get('/events', [PhotosController::class, 'show_events'] )->name('show_event');    
