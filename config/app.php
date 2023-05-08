@@ -56,7 +56,7 @@ return [
 
     'host' => env('APP_HOST', '0.0.0.0'),
 
-    'asset_url' => env('ASSET_URL', null),
+    'asset_url' => env('ASSET_URL', 'https://myeventia-production.up.railway.app/'),
 
     /*
     |--------------------------------------------------------------------------
