@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Guest;
 use Illuminate\Database\Seeder;
 
 class GuestSeeder extends Seeder
@@ -13,11 +14,21 @@ class GuestSeeder extends Seeder
      */
     public function run()
     {
-        // Organizer::create([
-        //     'carnet' => '5431934 SC',
-        //     'telephone' => '77773821',
-        //     'user_id' => 6,
-        // ]);
+         Guest::create([
+             'user_id' => 10,
+         ]);
+         Guest::create([
+            'user_id' => 11,
+        ]);
+        Guest::create([
+            'user_id' => 12,
+        ]);
+        Guest::create([
+            'user_id' => 13,
+        ]);
+        Guest::create([
+            'user_id' => 14,
+        ]);
         // Organizer::create([
         //     'carnet' => '6453664 SC',
         //     'telephone' => '75064945',
