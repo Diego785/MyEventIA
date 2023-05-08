@@ -52,11 +52,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://myeventia-production.up.railway.app/'),
+    'url' => env('APP_URL', 'http://localhost'),
 
-    'host' => env('APP_HOST', '0.0.0.0'),
-
-    'asset_url' => env('ASSET_URL', 'https://myeventia-production.up.railway.app/'),
+    'asset_url' => env('ASSET_URL', null),
 
     /*
     |--------------------------------------------------------------------------
