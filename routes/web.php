@@ -37,7 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 //SYSTEM
 Route::get('/registering', [RegisterController::class, 'select_register'])->name('registering');
-Route::get('/register-time', [RegisterController::class, 'registering_time'])->name('registering.time');
+Route::get('/registering-time', [RegisterController::class, 'registering_time'])->name('registering.time');
 Route::get('/registering-photographer/{amount}', [RegisterController::class, 'registering_photographer'])->name('registering.photographer');
 Route::get('/registering-organizer', [RegisterController::class, 'registering_organizer'])->name('registering.organizer');
 Route::get('/my-login', [RegisterController::class, 'login'])->name('my_login');
