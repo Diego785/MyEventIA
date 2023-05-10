@@ -34,7 +34,7 @@ class ShowRequests extends Component
         $requests = [];
         if (Auth::user()->photographer != null) {
 
-            $requests = EventPayment::where('photographer_id', Auth::user()->photographer->id)->where('status', 'Pendiente')->get();
+            $requests = EventPayment::where('photographer_id', Auth::user()->photographer->id)->get();
         }else{
             $requests = EventPayment::where('organizer_id', Auth::user()->organizer->id)->get();
 

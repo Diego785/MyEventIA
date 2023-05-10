@@ -43,7 +43,7 @@
     <div class="fixed w-full z-30 flex bg-white dark:bg-[#0F172A] p-2 items-center justify-center h-16 px-10">
         <div
             class="logo ml-12 dark:text-white  transform ease-in-out duration-500 flex-none h-full flex items-center justify-center">
-            DHV
+            Hecho por DHV :3
         </div>
         <!-- SPACER -->
         <div class="grow h-full flex items-center justify-center"></div>
@@ -133,15 +133,8 @@
                     </div>
                 </div>
             </a>
-            @if (auth()->user()->photographer != null)
-                <div
-                    class="cursor-pointer hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
-                    <i class="fa-solid fa-credit-card"></i>
-                    <div>
-                        Pagos
-                    </div>
-                </div>
-            @else
+            @if (auth()->user()->photographer == null)
+               
                 <a href="{{ route('organizer.photographers') }}">
 
                     <div
@@ -179,7 +172,7 @@
                 </form>
             </div>
         </div>
-        </div>
+
         <!-- MINI SIDEBAR-->
         <div class="mini mt-20 flex flex-col space-y-2 w-full h-[calc(100vh)]">
             <a href="{{ route('events') }}">
@@ -190,12 +183,8 @@
 
                 </div>
             </a>
-            @if (auth()->user()->photographer != null)
-                <div
-                    class="cursor-pointer hover:ml-4 justify-end pr-5 text-white hover:text-purple-500 dark:hover:text-blue-500 w-full bg-[#1E293B] p-3 rounded-full transform ease-in-out duration-300 flex">
-                    <i class="fa-solid fa-credit-card"></i>
-                </div>
-            @else
+            @if (auth()->user()->photographer == null)
+                
                 <a href="{{ route('organizer.photographers') }}">
 
                     <div
@@ -234,7 +223,18 @@
         </div>
 
     </aside>
-    @yield('content')
+    <div class="flex items-center justify-center h-40 text-5xl text-white">
+        <p class="">@yield('title')</p>
+
+    </div>
+    <div class="flex flex-col justify-center items-center h-screen">
+       
+        <div class="mx-auto">
+            @yield('content')
+
+        </div>
+    </div>
+
 
 
     <script>

@@ -6,12 +6,14 @@ use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ShowMyEvents extends Component
 {
 
     public $name, $description, $address, $date, $start_time, $end_time;
     public $open = false;
+
     protected $rules = [
         'name' => 'required',
         'date' => 'required',
@@ -47,6 +49,9 @@ class ShowMyEvents extends Component
         ]);
         $this->reset('open', 'name', 'description', 'address', 'date', 'start_time', 'end_time');
     }
+
+
+   
 
     public function render()
     {

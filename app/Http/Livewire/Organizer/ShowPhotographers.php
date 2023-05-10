@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class ShowPhotographers extends Component
 {
-    public $status = 'Pendiente', $amount, $description, $photographer, $photographer_id, $organizer, $event;
+    public $status = 'Pendiente', $amount, $description, $photographer, $photographer_id, $organizer, $event = 1;
     public $open = false;
 
     protected $rules = [

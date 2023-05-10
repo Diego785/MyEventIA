@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             OrganizerSeeder::class,
             PhotographerSeeder::class,
+            GuestSeeder::class,
             EventSeeder::class,
             PhotoSeeder::class,
             SuscriptionSeeder::class,

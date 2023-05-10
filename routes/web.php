@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return "Hola mundo";
+    return view('auth.register');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return "Hola Mundo";
+    return view('my-views.photographer.show-event');
 });
 
 //-------------------- MY ROUTES ------------------------//
@@ -77,11 +77,15 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->get('/photographers', [OrganizerEventsController::class, 'photographers'])->name('organizer.photographers');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->get('/testing-qr/{id}', [RegisterController::class, 'testing_qr'])->name('testing.qr');
 
 
 //TESTING VIEWS
 Route::get('/testing-payment-view', [RegisterController::class, 'testing_payment_view'])->name('testing.payment-view');
-Route::get('/testing-qr', [RegisterController::class, 'testing_qr'])->name('testing.qr');
 
 
 //TESTING PYTHON

@@ -3,12 +3,8 @@
 namespace App\Http\Controllers\Photographer;
 
 use App\Http\Controllers\Controller;
-use App\Models\Event;
 use App\Models\EventPayment;
-use App\Models\Photo;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
@@ -111,4 +107,6 @@ class MyEventsController extends Controller
         // mostrar el resultado
         echo $output;
     }
+
+    
 }

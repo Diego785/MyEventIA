@@ -1,38 +1,64 @@
 <div>
-    <div class="content ml-12 transform ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4 ">
-        <div class="h-full  bg-gradient-to-r from-pink-300 to-indigo-300">
+    <div class="content ml-12 pb-4 transform ease-in-out duration-500 pt-20 px-2 md:px-5">
+        <div class="h-full mb-40  border rounded-lg  bg-gradient-to-r from-pink-300 to-indigo-300">
+
+
+            <div class="w-full bg-white rounded-xl p-4 shadow-xl mt-4">
+                <div class="flex flex-col font-bold text-xl justify-center items-center">
+                    {{ $event->name }}
+
+                </div>
+            </div>
+
             <div class="grid grid-cols-12 gap-0">
                 <div class="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-8 xxl:col-span-8 px-6 py-6">
                     <div class="grid grid-cols-12 gap-6">
+
                         <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-6 xxl:col-span-6">
+
                             <!-- Start Nav Bar -->
                             <nav x-data="{ active: 1 }" class="bg-white p-4 rounded-xl shadow-xl flex items-center">
 
-                                <a href="#" class="flex space-x-2 items-center mr-4 text-gray-400"
-                                    x-bind:class="{ 'text-indigo-600 border-b-4 border-indigo-600': active === 2 }"
-                                    x-on:click.prevent="active = 2">
-                                    <i class="fas fa-clipboard-list fa-lg"></i>
-                                    <p class="font-semibold text-sm">Fotos del Evento</p>
-                                </a>
-                                <a href="#" class="flex space-x-2 items-center mr-4 text-gray-400"
-                                    x-bind:class="{ 'text-indigo-600 border-b-4 border-indigo-600': active === 3 }"
-                                    x-on:click.prevent="active = 3">
-                                    <i class="fas fa-file-medical-alt fa-lg"></i>
-                                    <p class="font-semibold text-sm">Solicitudes de Compra</p>
-                                </a>
+                                @if ($photosEvent)
+                                    <a wire:click="$set('photosEvent', true)"
+                                        class=" cursor-pointer flex space-x-2 items-center mr-4 text-indigo-600 border-b-4 border-indigo-600"
+                                        x-on:click.prevent="active = 2">
+                                        <i class="fas fa-clipboard-list fa-lg"></i>
+                                        <p class="font-semibold text-sm">Fotos del Evento</p>
+                                    </a>
+                                    <a wire:click="$set('photosEvent', false)"
+                                        class="cursor-pointer flex space-x-2 items-center mr-4 text-gray-400"
+                                        x-bind:class="{ 'text-indigo-600 border-b-4 border-indigo-600': active === 3 }"
+                                        x-on:click.prevent="active = 3">
+                                        <i class="fas fa-file-medical-alt fa-lg"></i>
+                                        <p class="font-semibold text-sm">Solicitudes de Compra</p>
+                                    </a>
+                                @else
+                                    <a wire:click="$set('photosEvent', true)"
+                                        class="cursor-pointer flex space-x-2 items-center mr-4 text-gray-400"
+                                        x-on:click.prevent="active = 2">
+                                        <i class="fas fa-clipboard-list fa-lg"></i>
+                                        <p class="font-semibold text-sm">Fotos del Evento</p>
+                                    </a>
+                                    <a wire:click="$set('photosEvent', false)"
+                                        class="cursor-pointer flex space-x-2 items-center mr-4 text-indigo-600 border-b-4 border-indigo-600"
+                                        x-bind:class="{ 'text-indigo-600 border-b-4 border-indigo-600': active === 3 }"
+                                        x-on:click.prevent="active = 3">
+                                        <i class="fas fa-file-medical-alt fa-lg"></i>
+                                        <p class="font-semibold text-sm">Solicitudes de Compra</p>
+                                    </a>
+                                @endif
                             </nav>
                             <!-- End Nav Bar -->
+            
                             <div class="m-1 p-2 rounded-xl">
-                                @if ($result)
-                                    <div>{{ $result }}</div>
-                                @endif
-                                <div>{{$image}}</div>
+
                                 @if ($image_preview)
                                     <img src="{{ $image_preview }}" id="main" alt="IMAGE"
                                         style="object-fit: contain; width:300px; height:300px; border-radius: 0.75rem; ">
                                 @else
                                     <img id="main" alt="IMAGE"
-                                        src="https://images.pexels.com/photos/268533/pexels-photo-268533.jpeg?cs=srgb&dl=pexels-pixabay-268533.jpg&fm=jpg"
+                                        src="https://img.freepik.com/premium-vector/cute-photographer-cartoon-illustration-people-profession-icon-concept_138676-1899.jpg"
                                         style="object-fit: contain; width:300px; height:300px; border-radius: 0.75rem; " />
                                 @endif
 
@@ -45,17 +71,15 @@
                                     <div class="relative inline-flex">
                                         <i
                                             class="fa-lg fas fa-sort-down w-2 h-2 absolute top-0 right-0 mx-5 my-2 pointer-events-none text-white"></i>
-                                        <select wire:model="category" wire:click="$set('image_preview', null)"
+                                        <select wire:model="category"
                                             class="border-white rounded-xl text-white  pl-5 pr-10 bg-pink-600 hover:bg-pink-700 focus:outline-none appearance-none">
                                             <option value="public">Públicas</option>
                                             <option value="private">Privadas</option>
                                         </select>
                                     </div>
                                     <div class="flex space-x-2 items-center">
-                                        <p class="font-semibold">Jonh Cena</p>
-                                        <div class="bg-gray-800 rounded-md p-2 flex items-center">
-                                            <i class="fab fa-github-alt fa-sm text-white"></i>
-                                        </div>
+                                        <p class="font-semibold">55 fotos</p>
+
                                     </div>
                                 </div>
                                 <p class="font-semibold text-gray-400">08:02 PM</p>
@@ -111,7 +135,7 @@
                                                 type="submit">Subir Foto</button>
                                         @else
                                             <button disabled="true"
-                                                class="mx-5 px-4 py-2 rounded text-primary hover:bg-primary  transition-all outline-none bg-black border-black text-white hover:text-black hover:bg-white font-bold"
+                                                class="mx-5 px-4 py-2 rounded text-primary  transition-all outline-none bg-gray-500 border-black text-white hover:text-black hover:bg-gray-300 font-bold"
                                                 type="submit">Subir Foto</button>
                                         @endif
 
@@ -249,31 +273,50 @@
                 document.getElementById('main').src = src
             }
         </script>
-        {{-- <script>
-            const inputImagen = document.querySelector('#file-btn');
-            const imagenPreview = document.querySelector('#main');
-
-            inputImagen.addEventListener('change', () => {
-                const file = inputImagen.files[0];
-                if (file) {
-                    const url = URL.createObjectURL(file);
-                    imagenPreview.src = url;
-                }
-            });
-        </script> --}}
         <script>
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Your work has been saved',
-                showConfirmButton: false,
-                timer: 1500
-            })
+            Livewire.on('waitingIA',
+                personFinded => {
+                    Swal.fire({
+                        title: 'Buscando Coincidencias!',
+                        html: 'Esto tomará <b></b> millisegundos :3.',
+                        timer: 6000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            const b = Swal.getHtmlContainer().querySelector('b')
+                            timerInterval = setInterval(() => {
+                                b.textContent = Swal.getTimerLeft()
+                            }, 100)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                    }).then((result) => {
+                        /* Read more about handling dismissals below */
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            console.log('I was closed by the timer')
+                        }
+                    })
+                });
         </script>
         <script>
-            Livewire.on('scriptExecuted', function(result) {
-                // Actualiza la UI con el valor del script
-                document.querySelector('#result').innerHTML = result;
+            Livewire.on('resultSearch', personFinded => {
+                Swal.fire({
+                    title: '¡Se encontraron coincidencias!',
+                    text: personFinded + " aparece en la foto!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Enviar Notificación!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Cancelar.',
+                            '¡No se ejecutó la notificación!'
+                        )
+                    }
+                })
             });
         </script>
     @endpush

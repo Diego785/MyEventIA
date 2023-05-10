@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\PhotosController;
 use App\Http\Controllers\Guest\GuestController;
+use App\Http\Livewire\Photographer\EventSelected;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -54,5 +55,10 @@ Route::middleware(['auth:sanctum'])->get('/user/revoke', function (Request $requ
 //-----------------------------------------------------------------------------------------------------------------------------------------------//
 
 //PHOTOS
-Route::get('/photos', [PhotosController::class, 'show_photos'] )->name('show_photos_event');    
-Route::get('/events', [PhotosController::class, 'show_events'] )->name('show_event');    
+Route::post('/photos', [PhotosController::class, 'show_photos'] )->name('show_photos_event');    
+Route::post('/profiles', [PhotosController::class, 'show_profile_photos'] )->name('show_profile_photos');    
+Route::post('/events', [PhotosController::class, 'show_events'] )->name('show_event');    
+Route::post('/upload_photos', [PhotosController::class, 'get_profile_photo'] )->name('save_photo');    
+Route::post('/guests_event', [PhotosController::class, 'testing_guests_photos'] )->name('guests.photos');    
+// Route::get('/guests', [PhotosController::class, 'show_guests'] )->name('show_event');
+// Hacer una consulta con el id del usuario logueado en mòvil más el user_id del inivitado registrado, para traer su foto.    

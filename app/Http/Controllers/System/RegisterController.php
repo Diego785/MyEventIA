@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\System;
 
 use App\Http\Controllers\Controller;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -38,13 +39,15 @@ class RegisterController extends Controller
         return view('my-views.system.my_login');
     }
 
-    public function testing_qr()
+    public function testing_qr($id)
     {
         $enlaceProfundo = 'miapp://formulario';
 
         $qrCode = QrCode::size(500)
             ->margin(10)
             ->generate($enlaceProfundo);
+
+         $event = Event::find($id);
         // var_dump($qrCode);
    
         // $base64 = base64_encode($qrCode);
@@ -52,6 +55,7 @@ class RegisterController extends Controller
 
          return view('my-views.testing.testing-qr', [
              'qrCode' => $qrCode,
+             'event' => $event
          ]);
     }
 

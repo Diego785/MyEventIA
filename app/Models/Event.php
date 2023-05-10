@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Testing\Fakes\EventFake;
 
 class Event extends Model
 {
@@ -22,5 +23,9 @@ class Event extends Model
     public function event_payment()
     {
         return $this->hasMany(EventPayment::class, 'event_id');
+    }
+    public function event_guest()
+    {
+        return $this->hasMany(EventGuest::class, 'event_id');
     }
 }

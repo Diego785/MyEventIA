@@ -1,6 +1,6 @@
 <div>
     <!-- component -->
-    <div class="content ml-12 transform ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4 ">
+    <div class="content ml-12 transform ease-in-out duration-500 px-2 md:px-5 pb-4 ">
 
         @if (Auth::user()->organizer != null)
             <button wire:click="request_open()"
@@ -20,7 +20,7 @@
                 <!-- Content -->
                 <div class="flex-1 px-2 sm:px-0">
 
-                    <div class="mb-10 sm:mb-0 mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                    <div class=" grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
                         @foreach ($events as $event)
                             <div
@@ -31,9 +31,26 @@
                                 <h4 class="text-white text-2xl font-bold capitalize text-center">
                                     {{ $event->name }}</h4>
                                 <p class="text-white/50">3 fotógrafos</p>
+                                @if (Auth::user()->organizer != null)
+                                    <a href="{{ route('testing.qr', $event->id) }}"
+                                        class="group rounded-2xl text-center py-2 h-12 w-48 bg-green-500 font-bold text-lg text-white relative overflow-hidden">
+                                        Generar QR
+                                        <div
+                                            class="absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl">
+                                        </div>
+                                    </a>
+                                @else
+                                    <a href="{{ route('photographer.event-selected', $event->id) }}"
+                                        class="group rounded-2xl text-center py-2 h-12 w-48 bg-green-500 font-bold text-lg text-white relative overflow-hidden">
+                                        Ver
+                                        <div
+                                            class="absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl">
+                                        </div>
+                                    </a>
+                                @endif
                             </div>
                         @endforeach
-
+                        {{-- <img src="<?php echo $qrCode; ?>"> --}}
 
 
                     </div>
@@ -92,7 +109,7 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button wire:click="" wire:loading.attr="disabled">
+            <x-jet-secondary-button wire:click="$set('open', false)" wire:loading.attr="disabled">
                 Cancelar
             </x-jet-secondary-button>
             <x-jet-danger-button wire:click="save_event()" wire:loading.attr="disabled" wire:target=""
